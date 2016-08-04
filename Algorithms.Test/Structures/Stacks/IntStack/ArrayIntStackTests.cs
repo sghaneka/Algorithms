@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Algorithms.Structures.Stacks.IntStack;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace Algorithms.Test.Structures.Stacks.IntStack
+{
+    [TestClass]
+    public class ArrayIntStackTests
+    {
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException), "Stack is empty")]
+        public void Array_Int_Peek_Throws_InvalidException_If_Its_Empty()
+        {
+             ArrayIntStack ais = new ArrayIntStack();
+            ais.Peek();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException), "Stack is empty")]
+        public void Array_Int_Pop_Throws_InvalidException_If_Its_Empty()
+        {
+            ArrayIntStack ais = new ArrayIntStack();
+            ais.Pop();
+        }
+
+        [TestMethod]
+        public void Array_Int_Push_And_Pop_Work()
+        {
+            ArrayIntStack ais = new ArrayIntStack();
+            ais.Push(0);
+            Assert.AreEqual(ais.Peek(), 0, "0 should be at the current position after push");
+            ais.Push(7);
+            ais.Push(4);
+            ais.Push(8);
+            Assert.AreEqual(ais.Pop(), 8, "8 should be popped out");
+            Assert.AreEqual(ais.Peek(), 4, "4 should be at the current position");
+            ais.Push(11);
+            Assert.AreEqual(ais.Peek(), 11, "11 should be at the current position");
+            Assert.AreEqual(ais.Pop(), 11, "11 should be popped out");
+        }
+    }
+}
